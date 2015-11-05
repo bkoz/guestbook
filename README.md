@@ -28,21 +28,27 @@ Start the services and replication controllers.
 
 Verify the endpoints and services are working.
 
-`$ sudo kubectl get endpoints
+`$ sudo kubectl get endpoints`
 
 NAME            ENDPOINTS
+
 kubernetes      192.168.100.203:6443
+
 kubernetes-ro   192.168.100.203:7080
+
 mongo-client    18.0.92.2:8080
+
 mongod          18.0.29.2:27017
 
-$ `
+`$`
 
-$ curl http://18.0.29.2:27017
+`$ curl http://18.0.29.2:27017`
+
 You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number
-$ 
 
-$ curl http://18.0.92.2:8080
+`$` 
+
+`$ curl http://18.0.92.2:8080`
 
 <!DOCTYPE html>
 <html>
@@ -56,24 +62,27 @@ $ curl http://18.0.92.2:8080
 </body >
 </html>
 
-$ sudo kubectl get services
+`$ sudo kubectl get services`
 
 Curl the IP:Port of each service and verify the same info as above is returned.
 
 ## From the host desktop
 
-5) Connect to the EAP console and deploy the MongoDBWebapp.war file.
+Connect to the EAP console and deploy the MongoDBWebapp.war file.
 
-$ http://192.168.100.202:9990
-login: admin
-password: p@ssw0rd
+`$ http://192.168.100.202:9990`
 
-6) Visit the application
+`login: admin`
+
+`password: p@ssw0rd`
+
+Visit the application
 
 $ firefox http://192.168.100.201:8080/MongoDBWebapp
 
-7) How to resize the rc's
+How to resize the rc's
 
-$ sudo kubectl resize --replicas=2 rc mongod-controller
-$ sudo kubectl resize --replicas=2 rc mongo-client-controller
+`$ sudo kubectl resize --replicas=2 rc mongod-controller`
+
+`$ sudo kubectl resize --replicas=2 rc mongo-client-controller`
 
