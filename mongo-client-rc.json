@@ -1,0 +1,37 @@
+{
+    "apiVersion": "v1beta1",
+    "desiredState": {
+        "podTemplate": {
+            "desiredState": {
+                "manifest": {
+                    "containers": [
+                        {
+                            "image": "presto.haveopen.com:5000/rhel7:eap6",
+                            "name": "mongoc",
+        		    "ports": [{ "containerPort": 8080, "hostPort": 8080 },{"containerPort": 9990, "hostPort": 9990}]
+                        }
+                    ],
+                    "id": "mongoc-pod",
+                    "restartPolicy": {
+                        "always": {}
+                    },
+                    "version": "v1beta1",
+                    "volumes": null
+                }
+            },
+            "labels": {
+                "name": "mongoc-pod"
+            }
+        },
+        "replicaSelector": {
+            "name": "mongoc-pod"
+        },
+        "replicas": 1
+    },
+    "id": "mongo-client-controller",
+    "kind": "ReplicationController",
+    "labels": {
+        "name": "mongoc-pod"
+    }
+}
+

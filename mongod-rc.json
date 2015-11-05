@@ -1,0 +1,42 @@
+{
+    "apiVersion": "v1beta1",
+    "desiredState": {
+        "podTemplate": {
+            "desiredState": {
+                "manifest": {
+                    "containers": [
+                        {
+                            "image": "presto.haveopen.com:5000/rhel7:mongod",
+                            "name": "mongod",
+                            "ports": [
+                                {
+                                    "containerPort": 27017,
+                                    "hostPort": 27017
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "mongod-pod",
+                    "restartPolicy": {
+                        "always": {}
+                    },
+                    "version": "v1beta1",
+                    "volumes": null
+                }
+            },
+            "labels": {
+                "name": "mongod-pod"
+            }
+        },
+        "replicaSelector": {
+            "name": "mongod-pod"
+        },
+        "replicas": 1
+    },
+    "id": "mongod-controller",
+    "kind": "ReplicationController",
+    "labels": {
+        "name": "mongod-pod"
+    }
+}
+
