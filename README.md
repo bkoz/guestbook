@@ -3,7 +3,7 @@ Simple Kube uService example that uses Java JBoss EAP/MongoDB
 
 ## Node Configuration
 
-On each kube node, edit /etc/sysconfig/docker and add
+On each kube node, edit `/etc/sysconfig/docker` and add
 presto.haveopen.com:5000 as an insecure registry then 
 restart docker.
 
@@ -16,17 +16,17 @@ the services.
 
 ## Master Configuration
 
-Start the services and replication controllers.
+### Start the services and replication controllers.
 
-`$ sudo kubectl create -f mongo-client-service.json`
+    `$ sudo kubectl create -f mongo-client-service.json`
 
-`$ sudo kubectl create -f mongod-service.json`
+    `$ sudo kubectl create -f mongod-service.json`
 
-`$ sudo kubectl create -f mongo-client-rc.json`
+    `$ sudo kubectl create -f mongo-client-rc.json`
 
-`$ sudo kubectl create -f mongod-rc.json`
+    `$ sudo kubectl create -f mongod-rc.json`
 
-Verify the endpoints and services are working.
+### Verify the endpoints and services are working.
 
 `$ sudo kubectl get endpoints`
 
@@ -68,7 +68,7 @@ Curl the IP:Port of each service and verify the same info as above is returned.
 
 ## From the host desktop
 
-Connect to the EAP console and deploy the MongoDBWebapp.war file.
+### Connect to the EAP console and deploy the MongoDBWebapp.war file.
 
 `$ http://192.168.100.202:9990`
 
@@ -76,7 +76,7 @@ Connect to the EAP console and deploy the MongoDBWebapp.war file.
 
 `password: p@ssw0rd`
 
-Visit the application
+### Visit the application
 
 $ firefox http://192.168.100.201:8080/MongoDBWebapp
 
