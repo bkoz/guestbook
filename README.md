@@ -1,5 +1,5 @@
 # guestbook
-Simple Kube uService example that uses Java JBoss EAP/MongoDB
+A simple Kube uService example that uses Java JBoss EAP/MongoDB
 
 ## Node Configuration
 
@@ -9,10 +9,10 @@ restart docker.
 
 `INSECURE_REGISTRY='--insecure-registry presto.haveopen.com:5000'`
  
-`# systemctl restart docker`
+`$ sudo systemctl restart docker`
 
-Edit mongo-client-service.json and mongod-service.json to reflect the IP address of the nodes which will host
-the services.
+Edit mongo-client-service.json and mongod-service.json to reflect 
+the IP address of the nodes which will host the services.
 
 ## Master Configuration
 
@@ -26,13 +26,11 @@ the services.
 ### Verify the endpoints and services are working.
 
     $ sudo kubectl get endpoints
-    
     NAME            ENDPOINTS
     kubernetes      192.168.100.203:6443
     kubernetes-ro   192.168.100.203:7080
     mongo-client    18.0.92.2:8080
     mongod          18.0.29.2:27017
-    $
 
     $ curl http://18.0.29.2:27017
 
@@ -43,12 +41,10 @@ You are trying to access MongoDB on the native driver port. For http diagnostic 
     <!DOCTYPE html>
     <html>
     <head>
-    
     <title>EAP 6</title>
     ...
     ...
     ...
-    
     </body >
     </html>
 
@@ -69,7 +65,7 @@ Curl the IP:Port of each service and verify the same info as above is returned.
 
     $ firefox http://192.168.100.201:8080/MongoDBWebapp
 
-How to resize the rc's
+### How to resize the rc's
 
     $ sudo kubectl resize --replicas=2 rc mongod-controller
     $ sudo kubectl resize --replicas=2 rc mongo-client-controller
