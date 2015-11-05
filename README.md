@@ -1,5 +1,5 @@
 # guestbook
-A simple Kube uService example that uses Java, JBoss EAP and MongoDB.
+A simple Kube uService based application that uses Java, JBoss EAP and MongoDB.
 
 ## Node Configuration
 
