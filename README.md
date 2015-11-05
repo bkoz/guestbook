@@ -1,17 +1,17 @@
 # guestbook
-A simple Kube uService example that uses Java JBoss EAP/MongoDB
+A simple Kube uService example that uses Java, JBoss EAP and MongoDB.
 
 ## Node Configuration
 
 On each kube node, edit `/etc/sysconfig/docker` and add
-presto.haveopen.com:5000 as an insecure registry then 
+`presto.haveopen.com:5000` as an insecure registry then 
 restart docker.
 
 `INSECURE_REGISTRY='--insecure-registry presto.haveopen.com:5000'`
  
 `$ sudo systemctl restart docker`
 
-Edit mongo-client-service.json and mongod-service.json to reflect 
+Edit `mongo-client-service.json` and `mongod-service.json` to reflect 
 the IP address of the nodes which will host the services.
 
 ## Master Configuration
