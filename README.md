@@ -19,11 +19,8 @@ the services.
 ### Start the services and replication controllers.
 
     `$ sudo kubectl create -f mongo-client-service.json`
-
     `$ sudo kubectl create -f mongod-service.json`
-
     `$ sudo kubectl create -f mongo-client-rc.json`
-
     `$ sudo kubectl create -f mongod-rc.json`
 
 ### Verify the endpoints and services are working.
