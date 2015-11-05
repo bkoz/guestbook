@@ -7,7 +7,7 @@ On each kube node, edit /etc/sysconfig/docker and add
 presto.haveopen.com:5000 as an insecure registry then 
 restart docker.
 
-INSECURE_REGISTRY='--insecure-registry presto.haveopen.com:5000'
+`INSECURE_REGISTRY='--insecure-registry presto.haveopen.com:5000'`
  
 `# systemctl restart docker`
 
@@ -18,20 +18,20 @@ the services.
 
 Start the services and replication controllers.
 
-$ sudo kubectl create -f mongo-client-service.json
-$ sudo kubectl create -f mongod-service.json
-$ sudo kubectl create -f mongo-client-rc.json
-$ sudo kubectl create -f mongod-rc.json
+`$ sudo kubectl create -f mongo-client-service.json`
+`$ sudo kubectl create -f mongod-service.json`
+`$ sudo kubectl create -f mongo-client-rc.json`
+`$ sudo kubectl create -f mongod-rc.json`
 
 Verify the endpoints and services are working.
 
-$ sudo kubectl get endpoints
+`$ sudo kubectl get endpoints
 NAME            ENDPOINTS
 kubernetes      192.168.100.203:6443
 kubernetes-ro   192.168.100.203:7080
 mongo-client    18.0.92.2:8080
 mongod          18.0.29.2:27017
-$ 
+$ `
 
 $ curl http://18.0.29.2:27017
 You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number
