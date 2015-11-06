@@ -4,7 +4,6 @@ A simple Kube uService based application that uses Java, JBoss EAP and MongoDB.
 This example assumes you have a working kube cluster.
 
 ## Node Configuration
-
 On each kube node, edit `/etc/sysconfig/docker` and add
 `presto.haveopen.com:5000` as an insecure registry then 
 restart docker.
@@ -14,21 +13,18 @@ restart docker.
 `$ sudo systemctl restart docker`
 
 ## Master Configuration
-
 Copy all of the `*.json` files to the master.
 
 Edit `mongo-client-service.json` and `mongod-service.json` to reflect 
 the IP address of the nodes which will host the services.
 
 ### Create the services and replication controllers.
-
     $ sudo kubectl create -f mongo-client-service.json
     $ sudo kubectl create -f mongod-service.json
     $ sudo kubectl create -f mongo-client-rc.json
     $ sudo kubectl create -f mongod-rc.json
 
 ### Verify the endpoints and services are working.
-
     $ sudo kubectl get endpoints
     NAME            ENDPOINTS
     kubernetes      192.168.100.203:6443
@@ -64,7 +60,6 @@ From the master, curl each service and verify the same info as
 above is returned.
 
 ## Perform the following checks from the host desktop.
-
 Connect to the EAP console and deploy the MongoDBWebapp.war file.
 
     $ http://192.168.100.202:9990
