@@ -38,7 +38,8 @@ From the master, curl the mongod server.
 
 If the mongod service is working, the following message will be returned:
 
-`You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number.`
+    You are trying to access MongoDB on the native driver port. For http 
+    diagnostic access, add 1000 to the port number.
 
 From the master, curl the EAP server.
 
