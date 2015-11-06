@@ -1,6 +1,15 @@
 # guestbook
 A simple Kube uService based application that uses Java, JBoss EAP and MongoDB.
 
+## Overview
+The guestbook is a simple client/server application that consists of two kube
+services. The client service is backed by a pod which is written in Java
+and runs on a JBoss EAP6 server. It provides the web front end and interacts
+with the mongodb database.  The server service is backed by a mongod pod.  The
+client discovers the mongod pod via environment variables which are based on
+kube label selectors defined by the services.
+
+
 This example assumes you have a working kube cluster.
 
 ## Node Configuration
