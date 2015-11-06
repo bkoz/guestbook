@@ -61,9 +61,9 @@ From the master, curl each service and verify the same info as
 above is returned.
 
 ## Perform the following checks from the host desktop.
-Connect to the EAP console and deploy the MongoDBWebapp.war file.
+Connect to the EAP admin console and deploy the MongoDBWebapp.war file.
 
-    $ http://192.168.100.202:9990
+    $ firefox http://192.168.100.202:9990
 
     login: admin
     password: p@ssw0rd
