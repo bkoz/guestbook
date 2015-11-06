@@ -63,18 +63,18 @@ above is returned.
 
 ## Perform the following checks from the host desktop.
 
-### Connect to the EAP console and deploy the MongoDBWebapp.war file.
+Connect to the EAP console and deploy the MongoDBWebapp.war file.
 
     $ http://192.168.100.202:9990
 
     login: admin
     password: p@ssw0rd
 
-### Visit the application from a web browser.
+Visit the application from a web browser.
 
     $ firefox http://192.168.100.201:8080/MongoDBWebapp
 
-### Resize the replication controllers.
+Resize the replication controllers.
 
     $ sudo kubectl resize --replicas=2 rc mongod-controller
     $ sudo kubectl resize --replicas=2 rc mongo-client-controller
