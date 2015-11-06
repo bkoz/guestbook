@@ -11,12 +11,14 @@ restart docker.
  
 `$ sudo systemctl restart docker`
 
+## Master Configuration
+
+Copy all of the `*.json` files to the master.
+
 Edit `mongo-client-service.json` and `mongod-service.json` to reflect 
 the IP address of the nodes which will host the services.
 
-## Master Configuration
-
-### Start the services and replication controllers.
+### Create the services and replication controllers.
 
     $ sudo kubectl create -f mongo-client-service.json
     $ sudo kubectl create -f mongod-service.json
@@ -32,9 +34,15 @@ the IP address of the nodes which will host the services.
     mongo-client    18.0.92.2:8080
     mongod          18.0.29.2:27017
 
+From the master, curl the mongod server.
+
     $ curl http://18.0.29.2:27017
 
-You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number
+If the mongod service is working, the following message will be returned:
+
+`You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number.`
+
+From the master, curl the EAP server.
 
      $ curl http://18.0.92.2:8080
     
@@ -50,9 +58,10 @@ You are trying to access MongoDB on the native driver port. For http diagnostic 
 
     $ sudo kubectl get services
 
-Curl the IP:Port of each service and verify the same info as above is returned.
+From the master, curl each service and verify the same info as 
+above is returned.
 
-## From the host desktop
+## Perform the following checks from the host desktop.
 
 ### Connect to the EAP console and deploy the MongoDBWebapp.war file.
 
@@ -61,12 +70,13 @@ Curl the IP:Port of each service and verify the same info as above is returned.
     login: admin
     password: p@ssw0rd
 
-### Visit the application
+### Visit the application from a web browser.
 
     $ firefox http://192.168.100.201:8080/MongoDBWebapp
 
-### How to resize the rc's
+### Resize the replication controllers.
 
     $ sudo kubectl resize --replicas=2 rc mongod-controller
     $ sudo kubectl resize --replicas=2 rc mongo-client-controller
+
 
