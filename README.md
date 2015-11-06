@@ -1,6 +1,8 @@
 # guestbook
 A simple Kube uService based application that uses Java, JBoss EAP and MongoDB.
 
+This example assumes you have a working kube cluster.
+
 ## Node Configuration
 
 On each kube node, edit `/etc/sysconfig/docker` and add
