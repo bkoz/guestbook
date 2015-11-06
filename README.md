@@ -77,4 +77,10 @@ Resize the replication controllers.
     $ sudo kubectl resize --replicas=2 rc mongod-controller
     $ sudo kubectl resize --replicas=2 rc mongo-client-controller
 
+## Notes
+The mongod server listens on port 27017 and is not password protected.
+I hope to have mongo authentication working shortly.
+
+In the meantime, it is advisable to use not to keep this application running 
+for extended periods of time on public facing networks. 
 
