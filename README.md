@@ -9,6 +9,7 @@ with the mongodb database.  The server service is backed by a mongod pod.  The
 client discovers the mongod pod via environment variables which are based on
 kube label selectors defined by the services.
 
+This needs to be ported to v1 of the kube api.
 
 This example assumes you have a working kube cluster.
 
