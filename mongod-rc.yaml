@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: mongod-master
+  # these labels can be applied automatically 
+  # from the labels in the pod template if not set
+  labels:
+    app: mongod
+    role: master
+    tier: backend
+spec:
+  # this replicas value is default
+  # modify it according to your case
+  replicas: 1
+  # selector can be applied automatically 
+  # from the labels in the pod template if not set
+  # selector:
+  #   app: guestbook
+  #   role: master
+  #   tier: backend
+  template:
+    metadata:
+      labels:
+        app: mongod
+        role: master
+        tier: backend
+    spec:
+      containers:
+      - name: mongod
+        image: presto.haveopen.com:5000/rhel7:mongod
+        resources:
+          requests:
+            cpu: 100m
+            memory: 512Mi
+        ports:
+        - containerPort: 27017
+
+
