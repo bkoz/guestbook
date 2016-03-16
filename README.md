@@ -29,7 +29,7 @@ Copy all of the `*.yaml` files to the master.
 
 ### Create the replication controllers and services.
     $ sudo kubectl create -f mongod-rc.yaml
-    $ sudo kubectl expose rc mongod
+    $ sudo kubectl expose rc mongodb
     $ sudo kubectl create -f mongo-client-rc.yaml
     $ sudo kubectl expose rc mongo-client
 
@@ -48,9 +48,9 @@ If the mongod service is working, the following message will be returned:
     You are trying to access MongoDB on the native driver port. For http 
     diagnostic access, add 1000 to the port number.
 
-From the master, curl the MongoDB client.
+From the master, visit the client.
 
-     $ curl http://<mongo_client-service-ip>:8080
+     $ lynx http://<mongo_client-service-ip>:8080/MongoDBWebapp
 
 ## Perform the following checks from the host desktop.
 Connect to the EAP admin console and deploy the MongoDBWebapp.war file.
@@ -59,6 +59,6 @@ Connect to the EAP admin console and deploy the MongoDBWebapp.war file.
 
 Resize the front end.
 
-    $ sudo kubectl resize --replicas=2 rc mongo-client-controller
+    $ sudo kubectl scale --replicas=2 rc mongo-client
 
-
+    $ sudo kubectl get endpoints
