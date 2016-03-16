@@ -1,4 +1,6 @@
 # guestbook
+This README is a work-in-progress and may not work just yet.
+
 A simple Kube uService based application that uses Java, JBoss EAP and MongoDB.
 
 ## Overview
@@ -9,17 +11,15 @@ with the mongodb database.  The server service is backed by a mongod pod.  The
 client discovers the mongod pod via environment variables which are based on
 kube label selectors defined by the services.
 
-This needs to be ported to v1 of the kube api.
-
 This example assumes you have a working kube cluster.
 
 ## Node Configuration
-On each kube node, edit `/etc/sysconfig/docker` and add
-`presto.haveopen.com:5000` as an insecure registry then 
-restart docker.
+On each kube node, edit `/etc/sysconfig/docker`
 
-`INSECURE_REGISTRY='--insecure-registry presto.haveopen.com:5000'`
- 
+`OPTIONS="--selinux-enabled -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --tlscacert=/etc/docker/ca.pem --tlscert=/etc/docker/server-cert.pem --tlskey=/etc/docker/server-key.pem --tlsverify"`
+
+`ADD_REGISTRY='--add-registry registry.access.redhat.com --add-registry presto.haveopen.com:5000'`
+
 `$ sudo systemctl restart docker`
 
 ## Master Configuration
@@ -28,19 +28,14 @@ Copy all of the `*.json` files to the master.
 Edit `mongo-client-service.json` and `mongod-service.json` to reflect 
 the IP address of the nodes which will host the services.
 
-### Create the services and replication controllers.
-    $ sudo kubectl create -f mongo-client-service.json
-    $ sudo kubectl create -f mongod-service.json
-    $ sudo kubectl create -f mongo-client-rc.json
-    $ sudo kubectl create -f mongod-rc.json
+### Create the replication controllers and services.
+    $ sudo kubectl create -f mongo-client-rc.yaml
+    $ sudo kubectl expose rc mongo-client
+    $ sudo kubectl create -f mongod-rc.yaml
+    $ sudo kubectl expose rc mongod
 
 ### Verify the endpoints and services are working.
-    $ sudo kubectl get endpoints
-    NAME            ENDPOINTS
-    kubernetes      192.168.100.203:6443
-    kubernetes-ro   192.168.100.203:7080
-    mongo-client    18.0.92.2:8080
-    mongod          18.0.29.2:27017
+    $ sudo kubectl get services
 
 From the master, curl the mongod server.
 
