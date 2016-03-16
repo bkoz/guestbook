@@ -26,15 +26,14 @@ spec:
             memory: 512Mi
         ports:
         - containerPort: 8080
-        - containerPort: 9990
         env:
         - name: MONGODB_USER
-          value: journaldev
+          value: user
         - name: MONGODB_PASSWORD
-          value: journaldev
+          value: password
         - name: MONGODB_DATABASE
           value: journaldev
         - name: MONGODB_ADMIN_PASSWORD
-          value: journaldev
+          value: password
 
 
