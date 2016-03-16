@@ -27,12 +27,21 @@ spec:
     spec:
       containers:
       - name: mongod
-        image: presto.haveopen.com:5000/rhel7:mongod
+        image: registry.access.redhat.com/rhscl/mongodb-26-rhel7
         resources:
           requests:
             cpu: 100m
             memory: 512Mi
         ports:
         - containerPort: 27017
+        env:
+        - name: MONGODB_USER
+          value: user
+        - name: MONGODB_PASSWORD
+          value: password
+        - name: MONGODB_DATABASE
+          value: sampledb
+        - name: MONGODB_ADMIN_PASSWORD
+          value: password
 
 
