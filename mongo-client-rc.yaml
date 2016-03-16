@@ -19,13 +19,14 @@ spec:
     spec:
       containers:
       - name: mongo-client
-        image: presto.haveopen.com:5000/rhel7:eap6
+        image: presto.haveopen.com:5000/mongodbwebapp
         resources:
           requests:
             cpu: 100m
             memory: 512Mi
         ports:
         - containerPort: 8080
+        - containerPort: 9990
         env:
         - name: MONGODB_USER
           value: user
