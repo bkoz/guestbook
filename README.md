@@ -1,6 +1,4 @@
 # guestbook
-This README is a work-in-progress and may not work just yet.
-
 A simple Kube uService-based application that uses a MongoDB client written in Java running on JBoss EAP6.
 
 ## Overview
@@ -14,7 +12,7 @@ kube label selectors defined by the services.
 This example assumes you have a working kube cluster.
 
 ## Node Configuration
-On each kube node, edit `/etc/sysconfig/docker`
+On each kube node, edit `/etc/sysconfig/docker` so my docker registry can be used to pull the mongodbwebapp container.
 
 `OPTIONS="--selinux-enabled -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --tlscacert=/etc/docker/ca.pem --tlscert=/etc/docker/server-cert.pem --tlskey=/etc/docker/server-key.pem --tlsverify"`
 
