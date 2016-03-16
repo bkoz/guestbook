@@ -21,40 +21,39 @@ On each kube node, edit `/etc/sysconfig/docker` so my docker registry can be use
 `$ sudo systemctl restart docker`
 
 ## Master Configuration
-Copy all of the `*.yaml` files to the master.
+### Clone this repo to your Kube Master or where every your api client CLI is running so you have access to the *.yaml files.
 
-### Create the replication controllers and services.
+### Create the mongod replication controller and service.
     $ sudo kubectl create -f mongod-rc.yaml
     $ sudo kubectl expose rc mongodb
+
+### Once those pods are running, start up the client rc and service.
     $ sudo kubectl create -f mongo-client-rc.yaml
     $ sudo kubectl expose rc mongo-client
 
-### Verify both pods are running.
-`$ sudo kubectl get pods`
+### Verify both pods are running and the services are exposed.
+    $ sudo kubectl get pods
+    $ sudo kubectl get services
 
-### Verify the services are exposed.
-` $ sudo kubectl get services`
-
-To test mongod from the master:
+### To test mongod from the master:
 
     $ curl http://<mongod-service-ip>:27017
 
-If the mongod service is working, the following message will be returned:
+### If the mongod service is working, the following message will be returned:
 
     You are trying to access MongoDB on the native driver port. For http 
     diagnostic access, add 1000 to the port number.
 
-From the master, visit the client.
+### From the master, visit the client.
 
      $ lynx http://<mongo_client-service-ip>:8080/MongoDBWebapp
 
 ## Perform the following checks from the host desktop.
-Connect to the EAP admin console and deploy the MongoDBWebapp.war file.
+### Connect to the EAP admin console and deploy the MongoDBWebapp.war file.
 
     $ firefox http://<external-ip-of-mongo-client-service>:8080/MongoDBWebapp
 
-Resize the front end.
+### Resize the front end.
 
     $ sudo kubectl scale --replicas=2 rc mongo-client
-
     $ sudo kubectl get endpoints
