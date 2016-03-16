@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: mongod
+  name: mongodb
   # these labels can be applied automatically 
   # from the labels in the pod template if not set
   labels:
-    app: mongod
+    app: mongodb
     role: master
     tier: backend
 spec:
@@ -21,12 +21,12 @@ spec:
   template:
     metadata:
       labels:
-        app: mongod
+        app: mongodb
         role: master
         tier: backend
     spec:
       containers:
-      - name: mongod
+      - name: mongodb
         image: registry.access.redhat.com/rhscl/mongodb-26-rhel7
         resources:
           requests:
@@ -36,12 +36,12 @@ spec:
         - containerPort: 27017
         env:
         - name: MONGODB_USER
-          value: journaldev
+          value: user
         - name: MONGODB_PASSWORD
-          value: journaldev
+          value: password
         - name: MONGODB_DATABASE
           value: journaldev
         - name: MONGODB_ADMIN_PASSWORD
-          value: journaldev
+          value: password
 
 
