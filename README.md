@@ -14,8 +14,6 @@ This example assumes you have a working kube cluster.
 ## Node Configuration
 On each kube node, edit `/etc/sysconfig/docker` so my docker registry can be used to pull the mongodbwebapp container.
 
-`OPTIONS="--selinux-enabled -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --tlscacert=/etc/docker/ca.pem --tlscert=/etc/docker/server-cert.pem --tlskey=/etc/docker/server-key.pem --tlsverify"`
-
 `ADD_REGISTRY='--add-registry registry.access.redhat.com --add-registry presto.haveopen.com:5000'`
 
 `INSECURE_REGISTRY="--insecure-registry 172.30.0.0/16 --insecure-registry presto.haveopen.com:5000"`
