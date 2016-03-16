@@ -1,7 +1,7 @@
 # guestbook
 This README is a work-in-progress and may not work just yet.
 
-A simple Kube uService based application that uses Java, JBoss EAP and MongoDB.
+A simple Kube uService-based application that uses a MongoDB client written in Java running on JBoss EAP6.
 
 ## Overview
 The guestbook is a simple client/server application that consists of two kube
@@ -20,71 +20,45 @@ On each kube node, edit `/etc/sysconfig/docker`
 
 `ADD_REGISTRY='--add-registry registry.access.redhat.com --add-registry presto.haveopen.com:5000'`
 
+`INSECURE_REGISTRY="--insecure-registry 172.30.0.0/16 --insecure-registry presto.haveopen.com:5000"`
+
 `$ sudo systemctl restart docker`
 
 ## Master Configuration
-Copy all of the `*.json` files to the master.
-
-Edit `mongo-client-service.json` and `mongod-service.json` to reflect 
-the IP address of the nodes which will host the services.
+Copy all of the `*.yaml` files to the master.
 
 ### Create the replication controllers and services.
-    $ sudo kubectl create -f mongo-client-rc.yaml
-    $ sudo kubectl expose rc mongo-client
     $ sudo kubectl create -f mongod-rc.yaml
     $ sudo kubectl expose rc mongod
+    $ sudo kubectl create -f mongo-client-rc.yaml
+    $ sudo kubectl expose rc mongo-client
 
-### Verify the endpoints and services are working.
-    $ sudo kubectl get services
+### Verify both pods are running.
+`$ sudo kubectl get pods`
 
-From the master, curl the mongod server.
+### Verify the services are exposed.
+` $ sudo kubectl get services`
 
-    $ curl http://18.0.29.2:27017
+To test mongod from the master:
+
+    $ curl http://<mongod-service-ip>:27017
 
 If the mongod service is working, the following message will be returned:
 
     You are trying to access MongoDB on the native driver port. For http 
     diagnostic access, add 1000 to the port number.
 
-From the master, curl the EAP server.
+From the master, curl the MongoDB client.
 
-     $ curl http://18.0.92.2:8080
-    
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <title>EAP 6</title>
-    ...
-    ...
-    ...
-    </body >
-    </html>
-
-    $ sudo kubectl get services
-
-From the master, curl each service and verify the same info as 
-above is returned.
+     $ curl http://<mongo_client-service-ip>:8080
 
 ## Perform the following checks from the host desktop.
 Connect to the EAP admin console and deploy the MongoDBWebapp.war file.
 
-    $ firefox http://192.168.100.202:9990
+    $ firefox http://<external-ip-of-mongo-client-service>:8080/MongoDBWebapp
 
-    login: admin
-    password: p@ssw0rd
+Resize the front end.
 
-Visit the application from a web browser.
-
-    $ firefox http://192.168.100.201:8080/MongoDBWebapp
-
-Resize the replication controllers.
-
-    $ sudo kubectl resize --replicas=2 rc mongod-controller
     $ sudo kubectl resize --replicas=2 rc mongo-client-controller
 
-## Notes
-The mongod server listens on port 27017 and is not password protected.
-I hope to have mongo authentication working shortly.
-In the meantime, it is advisable not to keep this application running 
-for extended periods of time on public facing networks. 
 
