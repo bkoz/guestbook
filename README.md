@@ -25,11 +25,11 @@ On each kube node, edit `/etc/sysconfig/docker` so my docker registry can be use
 
 ### Create the mongod replication controller and service.
     $ sudo kubectl create -f mongod-rc.yaml
-    $ sudo kubectl expose rc mongodb
+    $ sudo kubectl expose replicationcontrollers/mongodb
 
 ### Once the pod is running, start up the mongo-client rc and service.
     $ sudo kubectl create -f mongo-client-rc.yaml
-    $ sudo kubectl expose rc mongo-client
+    $ sudo kubectl expose replicationcontrollers/mongo-client
 
 ### Verify both pods are running and the services are exposed.
     $ sudo kubectl get pods
