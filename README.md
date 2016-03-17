@@ -48,6 +48,10 @@ On each kube node, edit `/etc/sysconfig/docker` so my docker registry can be use
 
      $ lynx http://<mongo-client-service-ip>:8080/MongoDBWebapp
 
+### In case you only have curl.
+
+`curl --data "name=Bob&country=USA" http://<mongo_client-service-ip>:8080/MongoDBWebapp/addPerson;jsessi-dHmJlrYDBOm7TIRFQ-U-`
+
 ## Perform the following checks from the host desktop.
 ### Connect to the EAP admin console and deploy the MongoDBWebapp.war file.
 
