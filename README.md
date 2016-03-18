@@ -20,20 +20,17 @@ On each kube node, edit `/etc/sysconfig/docker`
 
 `$ sudo systemctl restart docker`
 
-## Master Configuration
-Copy all of the `*.yaml` files to the master.
-
 ### Create the replication controllers and services.
-    $ sudo kubectl create -f mongod-rc.yaml
-    $ sudo kubectl expose rc mongodb
-    $ sudo kubectl create -f mongo-client-rc.yaml
-    $ sudo kubectl expose rc mongo-client
+    $ kubectl create -f mongod-rc.yaml
+    $ kubectl expose rc mongodb
+    $ kubectl create -f mongo-client-rc.yaml
+    $ kubectl expose rc mongo-client
 
 ### Verify both pods are running.
-`$ sudo kubectl get pods`
+`$ kubectl get pods`
 
 ### Verify the services are exposed.
-` $ sudo kubectl get services`
+` $ kubectl get services`
 
 #### To test mongod from the master:
 
@@ -62,6 +59,6 @@ Copy all of the `*.yaml` files to the master.
 
 #### Resize the front end.
 
-    $ sudo kubectl scale --replicas=2 rc mongo-client
+    $ kubectl scale --replicas=2 rc mongo-client
 
-    $ sudo kubectl get endpoints
+    $ kubectl get endpoints
