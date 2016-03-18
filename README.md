@@ -1,6 +1,4 @@
 # guestbook
-This README is a work-in-progress and may not work just yet.
-
 A simple Kube uService-based application that uses a MongoDB client written in Java running on JBoss EAP6.
 
 ## Overview
