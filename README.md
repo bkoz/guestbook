@@ -12,11 +12,10 @@ kube label selectors defined by the services.
 This example assumes you have a working kube cluster.
 
 ## Node Configuration
-On each kube node, edit `/etc/sysconfig/docker`
+On each kube node, edit `/etc/sysconfig/docker` so docker can pull the client image from my registry.
 
 `ADD_REGISTRY='--add-registry registry.access.redhat.com --add-registry presto.haveopen.com:5000'`
-
-`INSECURE_REGISTRY="--insecure-registry 172.30.0.0/16 --insecure-registry presto.haveopen.com:5000"`
+`INSECURE_REGISTRY="--insecure-registry presto.haveopen.com:5000"`
 
 `$ sudo systemctl restart docker`
 
