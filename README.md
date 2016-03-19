@@ -47,7 +47,7 @@ Here is another automated way of doing so using `sed` from the shell.
 
      $ lynx http://<mongo_client-service-ip>:8080/MongoDBWebapp
 
-#### In case you only have curl. You'll need ther session url.
+#### In case you only have curl. You'll need the session url.
 
      $ curl --data "name=Bob&country=USA" http://<mongo_client-service-ip>:8080/MongoDBWebapp/addPerson;jsessi-dHmJlrYDBOm7TIRFQ-U-
 
