@@ -15,6 +15,7 @@ This example assumes you have a working kube cluster.
 On each kube node, edit `/etc/sysconfig/docker` and configure presto.haveopen.com as an INSECURE_REGISTRY.
 
 Here is another automated way of doing so using `sed`.
+
 `# sed -i.bak -e 's/^INSECURE_REGISTRY/#INSECURE_REGISTRY/' -e '/^# INSECURE_REGISTRY/a INSECURE_REGISTRY=--insecure-registry presto.haveopen.com:5000' /etc/sysconfig/docker`
 
 `$ sudo systemctl restart docker`
