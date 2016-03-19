@@ -12,9 +12,11 @@ kube label selectors defined by the services.
 This example assumes you have a working kube cluster.
 
 ## Node Configuration
-On each kube node, edit `/etc/sysconfig/docker` and configure presto.haveopen.com as an INSECURE_REGISTRY.
+On each kube node, edit `/etc/sysconfig/docker` and add presto.haveopen.com:5000 as an INSECURE_REGISTRY.
 
-Here is another automated way of doing so using `sed`.
+`INSECURE_REGISTRY=--insecure-registry presto.haveopen.com:5000`
+
+Here is another automated way of doing so using `sed` from the shell.
 
 `$ sudo sed -i.bak -e 's/^INSECURE_REGISTRY/#INSECURE_REGISTRY/' -e '/^# INSECURE_REGISTRY/a INSECURE_REGISTRY=--insecure-registry presto.haveopen.com:5000' /etc/sysconfig/docker`
 
